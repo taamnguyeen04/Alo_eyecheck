@@ -18,7 +18,6 @@ def snellen_letter_size(snellen_denominator=40, distance_m=2.0, diagonal_inch=14
     ppi = diag_px / diagonal_inch
     mm_per_inch = 25.4
 
-    # ✅ Công thức chuẩn Snellen
     # 20 ft = 6.096 m, hằng số 0.00145 là góc nhìn 5 phút cung
     height_m = 0.00145 * (snellen_denominator * 0.3048) * (distance_m / 6.096)
     height_mm = height_m * 1000
