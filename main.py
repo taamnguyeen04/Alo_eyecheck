@@ -8,7 +8,7 @@ from chatbot import (
 import random
 import pygame
 
-# Constants
+# Constants - Các hằng số quan trọng
 LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "P", "R", "T", "U", "V", "W", "X", "Y", "Z"]
 LEA_SYMBOLS = [
     {"name": "Nhà", "emoji": "🏠", "id": "nha"},
@@ -16,7 +16,7 @@ LEA_SYMBOLS = [
     {"name": "Vòng tròn", "emoji": "⚪", "id": "tron"},
     {"name": "Hình vuông", "emoji": "⬜", "id": "vuong"},
 ]
-SNELLEN_DENOMS = [200, 100, 70, 50, 40, 30, 25, 20]
+SNELLEN_DENOMS = [200, 100, 70, 50, 40, 30, 25, 20]  # Từ dễ → khó
 
 def get_user_input(prompt, is_speech):
     """
@@ -37,7 +37,19 @@ def get_user_input(prompt, is_speech):
         return input(">>> ").strip()
 
 def main():
-    """Thu thập thông tin và khởi động chương trình"""
+    """
+    Hàm main - Thu thập thông tin và điều khiển flow chương trình
+
+    Flow:
+    1. Khởi tạo pygame mixer
+    2. In header chào mừng
+    3. Thu thập thông tin: distance_m, diagonal_inch, is_adult, is_speech
+    4. Lấy lời chào từ Gemini và phát TTS
+    5. Test mắt trái → lưu kết quả
+    6. Test mắt phải → lưu kết quả
+    7. Tạo báo cáo tư vấn từ Gemini
+    8. Hiển thị và đọc báo cáo
+    """
     pygame.mixer.init()
 
     print("\n" + "="*60)
@@ -47,51 +59,59 @@ def main():
     # Thu thập thông tin
     print("\nVui lòng nhập các thông tin sau:")
 
-    try:
-        distance_m = float(input("Khoảng cách từ mắt đến màn hình (mét) [mặc định: 0.5]: ") or "0.5")
-        diagonal_inch = float(input("Đường chéo màn hình (inch) [mặc định: 14.5]: ") or "14.5")
+    # TODO: Thu thập thông tin với try-except để xử lý lỗi
+    distance_m = float(input("Khoảng cách từ mắt đến màn hình (mét) [mặc định: 0.5]: ") or "0.5")
 
-        is_adult_input = input("Đối tượng kiểm tra (1=Người lớn, 2=Trẻ nhỏ) [mặc định: 1]: ") or "1"
-        is_adult = is_adult_input == "1"
+    # TODO: Lấy đường chéo màn hình (diagonal_inch) - mặc định 14.5 ?
+    diagonal_inch = 0  # Thay đổi dòng này
 
-        is_speech_input = input("Phương thức trả lời (1=Gõ phím, 2=Giọng nói) [mặc định: 1]: ") or "1"
-        is_speech = is_speech_input == "2"
+    # TODO: Lấy đối tượng kiểm tra (1=Người lớn, 2=Trẻ nhỏ)
+    # Gợi ý: Lấy input, so sánh == "1" để có boolean
+    is_adult_input = ""  # Thay đổi dòng này
+    is_adult = False  # Thay đổi dòng này
 
-    except ValueError:
-        print("Giá trị không hợp lệ, sử dụng mặc định.")
-        distance_m = 0.5
-        diagonal_inch = 14.5
-        is_adult = True
-        is_speech = False
+    # TODO: Lấy phương thức trả lời (1=Gõ phím, 2=Giọng nói)
+    is_speech_input = ""  # Thay đổi dòng này
+    is_speech = False  # Thay đổi dòng này
 
-    # Lời chào từ Gemini
-    print("\n" + "-"*60)
-    welcome_msg = get_welcome_message(is_adult, distance_m)
-    print(f"\nTrợ lý AI: {welcome_msg}")
-    text_to_speech(welcome_msg)
+######################################################################################
+    # TODO: Lấy lời chào từ Gemini AI
+    # Gợi ý: welcome_msg = get_welcome_message(is_adult, distance_m)
+    welcome_msg = ""  # Thay đổi dòng này
+
+    # TODO: In lời chào và phát TTS
+    # Gợi ý: print(f"\nTrợ lý AI: {welcome_msg}") và text_to_speech(welcome_msg)
+    pass  # Thay đổi các dòng này
+    pass
 
     print("\n" + "-"*60)
     input("\nNhấn Enter để bắt đầu...")
 
-    # Test từng mắt
-    left_result = test_eye("trái", is_adult, is_speech, distance_m, diagonal_inch)
-    print(f"\nKết quả mắt trái: {left_result}")
+    # TODO: Test mắt trái và lưu kết quả
+    # Gợi ý: left_result = test_eye("trái",....)
+    left_result = ""  # Thay đổi dòng này
 
-    print("\n" + "="*60)
-    input("Nhấn Enter để kiểm tra mắt phải...")
+    # TODO: In kết quả mắt trái
 
-    right_result = test_eye("phải", is_adult, is_speech, distance_m, diagonal_inch)
-    print(f"\nKết quả mắt phải: {right_result}")
 
-    # Tư vấn cuối cùng
+    # TODO: Đợi người dùng sẵn sàng test mắt phải tương tự mắt trái left_result = test_eye("trái",....)
+
+
+    # TODO: In kết quả mắt phải
+
+
     print("\n" + "="*60)
     print("ĐANG TẠO BÁO CÁO TƯ VẤN...")
     print("="*60)
 
-    consultation = get_final_consultation(left_result, right_result)
+    # TODO: Lấy báo cáo tư vấn từ Gemini
+    # Gợi ý: get_final_consultation(.....)
+    consultation = ""  # Thay đổi dòng này
+
     print(f"\nTƯ VẤN TỪ BÁC SĨ AI:\n")
     print(consultation)
     text_to_speech(consultation)
+
 
     print("\n" + "="*60)
     print("HOÀN THÀNH KIỂM TRA!")
@@ -100,6 +120,12 @@ def main():
 def test_eye(eye_name, is_adult, is_speech, distance_m, diagonal_inch):
     """
     Test một mắt theo chuẩn Snellen
+
+    Logic:
+    - Chạy từng level (SNELLEN_DENOMS) từ dễ → khó
+    - Mỗi level: Hỏi tối đa 5 câu
+    - Nếu đúng >= 3/5: Qua level tiếp theo
+    - Nếu đúng < 3/5: Dừng lại, trả về kết quả level trước
 
     Args:
         eye_name: "trái" hoặc "phải"
@@ -115,56 +141,78 @@ def test_eye(eye_name, is_adult, is_speech, distance_m, diagonal_inch):
     print(f"KIỂM TRA MẮT {eye_name.upper()}")
     print("="*60)
 
-    # Hướng dẫn từ Gemini
-    instruction = get_eye_test_instruction(eye_name, is_adult)
-    print(f"\nTrợ lý AI: {instruction}")
-    text_to_speech(instruction)
+    # TODO: Lấy hướng dẫn từ Gemini cho mắt này
+    # Gợi ý: instruction = get_eye_test_instruction()
+    instruction = ""  # Thay đổi dòng này
 
-    input("\nNhấn Enter khi đã sẵn sàng...")
+    # TODO: In hướng dẫn và phát TTS
+    pass  # Thay đổi các dòng này
+    pass
 
+    # TODO: Đợi người dùng sẵn sàng
+    pass  # Thay đổi dòng này
+
+    # TODO: Khởi tạo các biến tracking
     current_level = 0
     max_level = len(SNELLEN_DENOMS) - 1
     correct_needed = 3
     max_attempts = 5
 
-    while current_level <= max_level:
-        denom = SNELLEN_DENOMS[current_level]
-        size_info = snellen_letter_size(denom, distance_m, diagonal_inch)
+    # TODO: Vòng lặp qua từng level
+    while False:  # Thay đổi điều kiện mức hiện tại nhỏ hơn mức cao nhất
+        # TODO: Lấy mẫu số Snellen hiện tại
+        denom = 0  # Thay đổi dòng này (gợi ý: list[index])
 
-        # Hướng dẫn level mới
-        print(f"\n{'─'*60}")
-        level_msg = get_level_instruction(denom, is_adult)
-        print(f"Trợ lý AI: {level_msg}")
-        text_to_speech(level_msg)
+        # TODO: Tính kích thước ký tự cho level này
+        size_info = 0 # (gợi ý: snellen_letter_size(...))
 
-        correct = 0
-        attempts = 0
+        # TODO: Lấy hướng dẫn level từ Gemini
+        level_msg = ""  # get_level_instruction
 
-        while attempts < max_attempts:
+        # TODO: In hướng dẫn và phát TTS
+        pass  # Thay đổi các dòng này
+
+
+        # TODO: Reset điểm cho level mới
+        correct = 0 # số câu trả lời đúng
+        attempts = 0 # số câu đã trả lời
+
+        # TODO: Vòng lặp hỏi 5 câu
+        while False:  # số câu đã trả lời < ....
             attempts += 1
+
             print(f"\n[Câu {attempts}/{max_attempts}]")
 
-            if is_adult:
-                # Test người lớn - chữ cái
-                letter = random.choice(LETTERS)
+            # TODO: Kiểm tra là người lớn hay trẻ nhỏ
+            if False:  # Thay đổi điều kiện (gợi ý: is_adult)
+                # ===== TEST NGƯỜI LỚN - CHỮ CÁI =====
+                # TODO: Random 1 chữ cái từ LETTERS
+                letter = ""  # Thay đổi dòng này
+
                 size_str = format_size_display(size_info)
-                print(f"\n>>> {letter} {size_str}")
+
+                # TODO: In chữ cái với kích thước
+                pass  # Thay đổi dòng này
 
                 user_answer = get_user_input("Bạn nhìn thấy chữ gì?", is_speech)
-                is_correct = check_answer_match(user_answer, letter, is_symbol=False)
+
+                # TODO: Kiểm tra đúng/sai
+                is_correct = False  # check_answer_match()
 
             else:
-                # Test trẻ nhỏ - biểu tượng
+                # ===== TEST TRẺ NHỎ - BIỂU TƯỢNG =====
                 symbol = random.choice(LEA_SYMBOLS)
+
                 size_str = format_size_display(size_info)
+
                 print(f"\n>>> {symbol['emoji']} {size_str}")
 
-                # Hiển thị lựa chọn
                 print("\nLựa chọn:")
                 for i, s in enumerate(LEA_SYMBOLS, 1):
                     print(f"{i}. {s['name']} {s['emoji']}")
 
                 user_answer = get_user_input("Chọn số hoặc nói tên biểu tượng:", is_speech)
+
 
                 # Xử lý câu trả lời
                 if is_speech:
@@ -181,25 +229,24 @@ def test_eye(eye_name, is_adult, is_speech, distance_m, diagonal_inch):
                     except ValueError:
                         is_correct = False
 
-            # Cập nhật điểm
-            if is_correct:
-                correct += 1
+            # TODO: Cập nhật điểm nếu đúng
+            if False:  # Thay đổi điều kiện (gợi ý: is_correct)
+                pass  # điểm + 1
 
-            # Feedback từ Gemini
-            # feedback = get_feedback(is_correct, correct, attempts)
-            # print(feedback)
-            # text_to_speech(feedback)
 
-            # Kiểm tra đủ điểm qua level
-            if correct >= correct_needed:
+            # TODO: Kiểm tra đủ điểm qua level chưa
+            if False:  # Thay đổi điều kiện (gợi ý: correct >= correct_needed)
                 print(f"\nĐạt {correct}/{attempts} - Chuyển sang mức khó hơn!")
                 break
 
-        # Kiểm tra có qua level không
-        if correct < correct_needed:
+        # TODO: Kiểm tra có pass level không
+        if False:  # Thay đổi điều kiện (gợi ý: correct < correct_needed)
             print(f"\nChỉ đúng {correct}/{attempts} - Dừng tại mức này.")
-            final_denom = SNELLEN_DENOMS[max(0, current_level - 1)] if current_level > 0 else 200
-            return f"20/{final_denom}"
+
+            # TODO: Tính toán kết quả cuối (level trước đó)
+            # Gợi ý: Nếu current_level > 0 thì lấy level trước, nếu không thì 200
+            final_denom = 200  # SNELLEN_DENOMS[....]
+            return ""  # Thay đổi dòng này (gợi ý: f"20/{final_denom}")
 
         current_level += 1
 
