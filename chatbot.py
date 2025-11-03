@@ -88,11 +88,7 @@ def get_final_consultation(left_eye_result, right_eye_result):
         ("human", f"Kết quả kiểm tra thị lực Snellen:\n"
                   f"- Mắt trái: {left_eye_result}\n"
                   f"- Mắt phải: {right_eye_result}\n\n"
-                  f"Hãy:\n"
-                  f"1. Đánh giá tình trạng thị lực\n"
-                  f"2. So sánh với tiêu chuẩn bình thường (20/20)\n"
-                  f"3. Đưa ra khuyến nghị (có cần đi khám bác sĩ không)\n"
-                  f"4. Lời khuyên chăm sóc mắt")
+                  f"Hãy: đánh giá thị lực và đưa ra lời khuyên giúp tôi")
     ]
     response = llm.invoke(messages)
     return str(response.content).replace("**","")

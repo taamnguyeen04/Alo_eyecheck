@@ -50,4 +50,4 @@ def check_answer_match(user_answer, correct_answer, is_symbol=False):
         return user_answer == correct_answer
     else:
         # Với chữ cái, so sánh không phân biệt hoa thường
-        return user_answer.upper() == correct_answer.upper()
+        return user_answer[-1].upper() == correct_answer.upper()

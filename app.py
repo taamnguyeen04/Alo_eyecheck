@@ -12,7 +12,7 @@ from chatbot import (
 import random
 
 # Constants
-LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "P", "R", "T", "U", "V", "W", "X", "Y", "Z"]
+LETTERS = ["A", "B", "C", "D", "E", "G", "H", "K", "L", "M", "N", "R", "T", "U", "V", "X", "Y", "Z"]
 LEA_SYMBOLS = [
     {"name": "Nhà", "emoji": "🏠", "id": "nha"},
     {"name": "Táo", "emoji": "🍎", "id": "tao"},

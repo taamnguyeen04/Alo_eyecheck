@@ -4,3 +4,4 @@ gtts
 SpeechRecognition
 langchain-google-genai
 python-dotenv
+pyautogui
